@@ -13,7 +13,7 @@ class App {
         //var_dump($url);
 
         //Controller
-        if ( file_exists('../App/controllers/' . $url[0] . '.php') ) {
+        if (file_exists('../App/controllers/' . $url[0] . '.php') ) {
             $this->controller = $url[0];
             unset($url[0]);
         }
