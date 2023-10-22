@@ -6,7 +6,7 @@ class mahasiswa extends Controller
     {
         $data['judul'] = 'Daftar Mahasiswa';
         $data['mhs'] = $this->model('mahasiswa_model')->getAllMahasiswa();
-        $this->view('templates/header');
+        $this->view('templates/header', $data);
         $this->view('mahasiswa/index', $data);
         $this->view('templates/footer');
     }
@@ -23,6 +23,11 @@ class mahasiswa extends Controller
     public function tambah()
     {
         if( $this->model('mahasiswa_model')->tambahDataMahasiswa($_POST) > 0 ) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success'); 
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger'); 
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
